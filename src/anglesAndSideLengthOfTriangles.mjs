@@ -22,40 +22,40 @@ function SSS(seiteA, seiteB, seiteC) {
     )
   );
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
-  console.log(angleAlpha)
-  console.log(angleBeta)
-  console.log(angleGamma)
 }
 
-SSS(1,2,8)
 
-function SSW(seiteA, seiteB, angleGamma) {
+function SSW(seiteA, seiteB, angleAlpha) {
   // Gegeben Seite a, Seite b und Winkel Alpha
-  angleAlpha = degreesToRadians(angleGamma);
+  angleAlpha = degreesToRadians(angleAlpha);
   const angleBeta = getAngleBetaWithArcsine(angleAlpha, seiteA, seiteB);
-  const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
+  const angleGamma = getRemainingAngle(radsToDegrees(angleAlpha), angleBeta);
   const seiteC = getSeiteCWithSineLaw(angleAlpha, angleGamma);
-  console.log(angleBeta);
 }
 
-SSW(3, 4, 30)
 
 
 function SSW2(seiteA, seiteB, angleBeta) {
   // Gegeben Seite a, Seite b und Winkel Beta
-  const angleAlpha = Math.asin((Math.sin(angleBeta) / seiteB) * seiteA);
-  const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
+  angleBeta = degreesToRadians(angleBeta);
+  const angleAlpha = radsToDegrees(Math.asin((Math.sin(angleBeta) / seiteB) * seiteA));
+  const angleGamma = getRemainingAngle(angleAlpha, radsToDegrees(angleBeta));
   const seiteC = getSeiteCWithSineLaw(angleAlpha, angleGamma);
 }
+
+SSW2(1, 3, 30)
 
 
 
 function SSW3(seiteA, seiteC, angleAlpha) {
   // Gegeben Seite a, Seite c, Winkel Alpha
+  angleAlpha 
   const angleGamma = Math.asin((Math.sin(angleAlpha) / seiteA) * seiteC);
   const angleBeta = getRemainingAngle(angleAlpha, angleGamma);
   const seiteB = getSeiteBWithSineLaw(angleAlpha, angleBeta);
 }
+
+
 
 function SSW4(seiteB, seiteC, angleBeta) {
   // Gegeben Seite B, Seite C, Winkel Beta
@@ -65,10 +65,13 @@ function SSW4(seiteB, seiteC, angleBeta) {
 }
 
 function SSW5(seiteB, seiteC, angleGamma) {
-  const angleBeta = Math.asin((Math.sin(angleGamma) / seiteC) * seiteB);
-  const angleAlpha = getRemainingAngle(angleGamma, angleBeta);
-  const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
+  angleGamma = degreesToRadians(angleGamma)
+  const angleBeta = radsToDegrees(Math.asin((Math.sin(angleGamma) / seiteC) * seiteB));
+  const angleAlpha = getRemainingAngle(radsToDegrees(angleGamma), angleBeta);
+  const seiteA = getSeiteAWithSineLaw(seiteB, degreesToRadians(angleBeta), degreesToRadians(angleAlpha));
 }
+
+SSW5(2, 4, 34)
 
 function SWS(seiteA, seiteB, angleGamma) {
   // Gegeben Seite a, Seite b und Winkel Gamma
