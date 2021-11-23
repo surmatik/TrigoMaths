@@ -126,13 +126,13 @@ function WWS2(seiteA, angleAlpha, angleBeta) {
 function WWS3(seiteB, angleAlpha, angleBeta) {
   // Gegeben Seite b, Winkel Alpha, Winkel Beta
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
-  const seiteA = getSeiteAWithSine(seiteB, angleBeta, angleAlpha);
+  const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
   const seiteC = getSeiteCWithSineLaw(angleAlpha, angleGamma);
 }
 
 function WWS4(seiteB, angleBeta, angleGamma) {
   const angleAlpha = getRemainingAngle(angleGamma, angleBeta);
-  const seiteA = getSeiteAWithSine(seiteB, angleBeta, angleAlpha);
+  const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
   const seiteC = getSeiteCWithSineLaw(angleAlpha, angleGamma);
 }
 function WWS5(seiteC, angleAlpha, angleBeta) {
@@ -162,7 +162,7 @@ function WSW5(seiteA, angleBeta, angleGamma) {
 
 function WSW6(seiteB, angleAlpha, angleGamma) {
   // Gegeben SeiteB, Winkel Alpha, Winkel Gamma
-  const angleBeta = getRemainingAngle(angleAlpha, angleBeta);
-  const seiteA = getSeiteAWithSine(seiteB, angleBeta, angleAlpha);
+  const angleBeta = getRemainingAngle(angleAlpha, angleGamma);
+  const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
   const seiteC = getSeiteCWithSineLaw(angleAlpha, angleGamma);
 }
