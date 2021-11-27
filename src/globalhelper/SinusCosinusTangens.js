@@ -1,3 +1,8 @@
+/**
+ * @param {number} seiteA
+ * @param {number} seiteB
+ * @param {number} seiteC
+ */
 export function calculateSinusTangensCosinus(seiteA, seiteB, seiteC) {
     const sinusAlpha = Math.sin(seiteA / seiteC)
     const sinusBeta = Math.sin(seiteB / seiteC)
