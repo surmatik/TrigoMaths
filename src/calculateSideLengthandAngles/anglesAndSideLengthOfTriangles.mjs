@@ -178,15 +178,15 @@ export function WWS(seiteA, angleAlpha, angleGamma) {
 }
 
 /**
- * @param {number} _seiteA
+ * @param {number} seiteA
  * @param {number} angleAlpha
  * @param {number} angleBeta
  */
-export function WWS2(_seiteA, angleAlpha, angleBeta) {
+export function WWS2(seiteA, angleAlpha, angleBeta) {
   // Gegeben Seite a, Winkel Alpha, Winkel Beta (https://www.matheretter.de/wiki/dreieck-berechnen-awawb)
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
-  const seiteB = getSeiteBWithSineLaw(angleAlpha, angleBeta);
-  const seiteC = getSeiteCWithSineLaw(angleAlpha, angleGamma);
+  const seiteB = getSeiteBWithSineLaw(seiteA, angleAlpha, angleBeta);
+  const seiteC = getSeiteCWithSineLaw(seiteA, angleAlpha, angleGamma);
   return{seiteB, angleGamma, seiteC}
 }
 
