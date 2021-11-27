@@ -14,15 +14,16 @@ export function getRemainingAngle(angle1, angle2) {
  * @param {number} angleBeta
  */
 export function getSeiteCWithSineLaw(seiteB, angleBeta, angleGamma) {
-    return (seiteB / Math.sin(angleBeta)) * Math.sin(angleGamma)
+    return (seiteB / Math.sin(degreesToRadians(angleBeta))) * Math.sin(degreesToRadians(angleGamma))
 }
 
 /**
  * @param {number} angleAlpha
- * @param {number} [seiteB]
+ * @param {number} seiteB
+ * @param {number} seiteA
  */
-export function getAngleBetaWithArcsine(angleAlpha, seiteB) {
-    return Math.asin((Math.sin(angleAlpha)  / angleAlpha) * seiteB)
+export function getAngleBetaWithArcsine(angleAlpha, seiteB , seiteA) {
+    return radsToDegrees(Math.asin((Math.sin(degreesToRadians(angleAlpha))  / (seiteA) * seiteB)))
 }
 
 /**
@@ -31,7 +32,7 @@ export function getAngleBetaWithArcsine(angleAlpha, seiteB) {
  * @param {number} seiteA
  */
 export function getSeiteBWithSineLaw(seiteA, angleAlpha, angleBeta) {
-    return (seiteA / Math.sin(angleAlpha)) * Math.sin(angleBeta)
+    return (seiteA / Math.sin(degreesToRadians(angleAlpha))) * Math.sin(degreesToRadians(angleBeta))
 }
 
 /**
@@ -40,7 +41,7 @@ export function getSeiteBWithSineLaw(seiteA, angleAlpha, angleBeta) {
  * @param {number} angleGamma
  */
 export function getSeiteAWithSineLaw(seiteC, angleGamma, angleAlpha) {
-    return (seiteC / Math.sin(angleGamma)) * Math.sin(angleAlpha)
+    return (seiteC / Math.sin(degreesToRadians(angleGamma))) * Math.sin(degreesToRadians(angleAlpha))
 }
 
 /**

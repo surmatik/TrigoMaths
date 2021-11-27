@@ -27,9 +27,8 @@ export function SSS(seiteA, seiteB, seiteC) {
     )
   );
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
-  return {angleAlpha, angleBeta, angleGamma};
+  return { angleAlpha, angleBeta, angleGamma };
 }
-
 
 /**
  * @param {number} seiteB
@@ -38,14 +37,11 @@ export function SSS(seiteA, seiteB, seiteC) {
  */
 export function SSW(seiteA, seiteB, angleAlpha) {
   // Gegeben Seite a, Seite b und Winkel Alpha
-  const angleBeta = getAngleBetaWithArcsine(angleAlpha, seiteB);
+  const angleBeta = getAngleBetaWithArcsine(angleAlpha, seiteB, seiteA);
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
   const seiteC = getSeiteCWithSineLaw(seiteA, angleAlpha, angleGamma);
-  return {angleBeta, angleGamma, seiteC}
+  return { angleBeta, angleGamma, seiteC };
 }
-
-
-
 
 /**
  * @param {number} seiteA
@@ -54,18 +50,19 @@ export function SSW(seiteA, seiteB, angleAlpha) {
  */
 export function SSW2(seiteA, seiteB, angleBeta) {
   // Gegeben Seite a, Seite b und Winkel Beta
-  const angleAlpha = radsToDegrees(Math.asin((Math.sin((angleBeta) / seiteB)) / (angleBeta)));
-  const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
-  const seiteC = Math.sqrt(
-    Math.pow(seiteA, 2) +
-      Math.pow(seiteB, 2) -
-      2 * seiteA * seiteB * Math.cos(angleGamma)
+  const angleAlpha = radsToDegrees(
+    Math.asin((Math.sin(degreesToRadians(angleBeta)) / seiteB) * seiteA)
   );
-  return {angleAlpha, angleGamma, seiteC}
+  const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
+  const seiteC = 
+    Math.sqrt(
+      Math.pow(seiteA, 2) +
+        Math.pow(seiteB, 2) -
+        2 * seiteA * seiteB * Math.cos(degreesToRadians(angleGamma))
+    )
+  ;
+  return { angleAlpha, angleGamma, seiteC };
 }
-
-
-
 
 /**
  * @param {number} seiteA
@@ -74,13 +71,13 @@ export function SSW2(seiteA, seiteB, angleBeta) {
  */
 export function SSW3(seiteA, seiteC, angleAlpha) {
   // Gegeben Seite a, Seite c, Winkel Alpha
-  const angleGamma = Math.asin((Math.sin(angleAlpha) / seiteA) * seiteC);
+  const angleGamma = radsToDegrees(
+    Math.asin((Math.sin(degreesToRadians(angleAlpha)) / seiteA) * seiteC)
+  );
   const angleBeta = getRemainingAngle(angleAlpha, angleGamma);
   const seiteB = getSeiteBWithSineLaw(seiteA, angleAlpha, angleBeta);
-  return {angleGamma, angleBeta, seiteB}
+  return { angleGamma, angleBeta, seiteB };
 }
-
-
 
 /**
  * @param {number} seiteB
@@ -89,10 +86,12 @@ export function SSW3(seiteA, seiteC, angleAlpha) {
  */
 export function SSW4(seiteB, seiteC, angleBeta) {
   // Gegeben Seite B, Seite C, Winkel Beta
-  const angleGamma = Math.asin((Math.sin((angleBeta) / seiteB) * seiteC));
+  const angleGamma = radsToDegrees(
+    Math.asin((Math.sin(degreesToRadians(angleBeta)) / seiteB) * seiteC)
+  );
   const angleAlpha = getRemainingAngle(angleBeta, angleGamma);
-  const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
-  return {angleGamma, angleAlpha, seiteA}
+  const seiteA = getSeiteAWithSineLaw(seiteC, angleGamma, angleAlpha);
+  return { angleGamma, angleAlpha, seiteA };
 }
 
 /**
@@ -101,13 +100,13 @@ export function SSW4(seiteB, seiteC, angleBeta) {
  * @param {number} angleGamma
  */
 export function SSW5(seiteB, seiteC, angleGamma) {
-  const angleBeta = Math.asin((Math.sin(angleGamma) / seiteC) * seiteB);
+  const angleBeta = radsToDegrees(
+    Math.asin((Math.sin(degreesToRadians(angleGamma)) / seiteC) * seiteB)
+  );
   const angleAlpha = getRemainingAngle(angleGamma, angleBeta);
   const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
-  return {angleBeta, angleAlpha, seiteA}
+  return { angleBeta, angleAlpha, seiteA };
 }
-
-
 
 /**
  * @param {number} seiteA
@@ -119,11 +118,13 @@ export function SWS(seiteA, seiteB, angleGamma) {
   const seiteC = Math.sqrt(
     Math.pow(seiteA, 2) +
       Math.pow(seiteB, 2) -
-      2 * seiteA * seiteB * Math.cos(angleGamma)
+      2 * seiteA * seiteB * Math.cos(degreesToRadians(angleGamma))
   );
-  const angleAlpha = radsToDegrees(Math.asin((Math.sin((angleGamma) / seiteC) * seiteA)));
+  const angleAlpha = radsToDegrees(
+    Math.asin((Math.sin(degreesToRadians(angleGamma)) / seiteC) * seiteA)
+  );
   const angleBeta = getRemainingAngle(angleAlpha, angleGamma);
-  return {angleAlpha, angleBeta, seiteC}
+  return { angleAlpha, angleBeta, seiteC };
 }
 
 /**
@@ -136,15 +137,19 @@ export function SWS2(seiteA, seiteC, angleBeta) {
   const seiteB = Math.sqrt(
     Math.pow(seiteA, 2) +
       Math.pow(seiteC, 2) -
-      2 * seiteA * seiteC * Math.cos(angleBeta)
+      2 * seiteA * seiteC * Math.cos(degreesToRadians(angleBeta))
   );
-  const angleAlpha = radsToDegrees(Math.acos(
-    (Math.pow(seiteA, 2) - Math.pow(seiteB, 2) - Math.pow(seiteC, 2)) /
-      (-2 * seiteB * seiteC)
-  ));
+  const angleAlpha = radsToDegrees(
+    Math.acos(
+      (Math.pow(seiteA, 2) - Math.pow(seiteB, 2) - Math.pow(seiteC, 2)) /
+        (-2 * seiteB * seiteC)
+    )
+  );
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
-  return {seiteB, angleAlpha, angleGamma}
+  return { seiteB, angleAlpha, angleGamma };
 }
+
+
 
 /**
  * @param {number} seiteB
@@ -154,14 +159,15 @@ export function SWS2(seiteA, seiteC, angleBeta) {
 export function SWS3(seiteB, seiteC, angleAlpha) {
   // Gegeben Seite B, Seite C, angleAlpha
   const seiteA = Math.sqrt(
-    Math.pow(seiteB, 2) -
+    Math.pow(seiteB, 2) +
       Math.pow(seiteC, 2) -
-      2 * seiteB * seiteC * Math.cos(angleAlpha)
+      2 * seiteB * seiteC * Math.cos(degreesToRadians(angleAlpha))
   );
-  const angleBeta = getAngleBetaWithArcsine(angleAlpha, seiteB);
+  const angleBeta = getAngleBetaWithArcsine(angleAlpha, seiteB, seiteA);
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
-  return {seiteA, angleBeta, angleGamma}
+  return { seiteA, angleBeta, angleGamma };
 }
+
 
 /**
  * @param {number} seiteA
@@ -173,9 +179,9 @@ export function WWS(seiteA, angleAlpha, angleGamma) {
   const angleBeta = getRemainingAngle(angleAlpha, angleGamma);
   const seiteB = getSeiteBWithSineLaw(seiteA, angleAlpha, angleBeta);
   const seiteC = getSeiteCWithSineLaw(seiteA, angleAlpha, angleGamma);
-  return {angleBeta, seiteB, seiteC}
-
+  return { angleBeta, seiteB, seiteC };
 }
+
 
 /**
  * @param {number} seiteA
@@ -187,8 +193,10 @@ export function WWS2(seiteA, angleAlpha, angleBeta) {
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
   const seiteB = getSeiteBWithSineLaw(seiteA, angleAlpha, angleBeta);
   const seiteC = getSeiteCWithSineLaw(seiteA, angleAlpha, angleGamma);
-  return{seiteB, angleGamma, seiteC}
+  return { seiteB, angleGamma, seiteC };
 }
+
+
 
 /**
  * @param {number} seiteB
@@ -200,8 +208,10 @@ export function WWS3(seiteB, angleAlpha, angleBeta) {
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
   const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
   const seiteC = getSeiteCWithSineLaw(seiteB, angleBeta, angleGamma);
-  return {seiteA, angleGamma, seiteC}
+  return { seiteA, angleGamma, seiteC };
 }
+
+
 /**
  * @param {number} seiteB
  * @param {number} angleBeta
@@ -210,9 +220,13 @@ export function WWS3(seiteB, angleAlpha, angleBeta) {
 export function WWS4(seiteB, angleBeta, angleGamma) {
   const angleAlpha = getRemainingAngle(angleGamma, angleBeta);
   const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
-  const seiteC = seiteB * Math.sin(angleGamma) * Math.sin(angleBeta);
-  return {angleAlpha, seiteA, seiteC}
+  const seiteC =
+    seiteB *
+    Math.sin(degreesToRadians(angleGamma)) *
+    Math.sin(degreesToRadians(angleBeta));
+  return { angleAlpha, seiteA, seiteC };
 }
+
 /**
  * @param {number} seiteC
  * @param {number} angleAlpha
@@ -222,8 +236,9 @@ export function WWS5(seiteC, angleAlpha, angleBeta) {
   const angleGamma = getRemainingAngle(angleAlpha, angleBeta);
   const seiteA = getSeiteAWithSineLaw(seiteC, angleBeta, angleAlpha);
   const seiteB = getSeiteBWithSineLaw(seiteC, angleAlpha, angleBeta);
-  return {angleGamma, seiteA, seiteB}
+  return { angleGamma, seiteA, seiteB };
 }
+
 
 /**
  * @param {number} angleAlpha
@@ -234,8 +249,9 @@ export function WWS6(seiteC, angleAlpha, angleGamma) {
   const angleBeta = getRemainingAngle(angleAlpha, angleGamma);
   const seiteB = getSeiteBWithSineLaw(seiteC, angleGamma, angleBeta);
   const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
-  return {angleBeta, seiteB, seiteA}
+  return { angleBeta, seiteB, seiteA };
 }
+
 
 /**
  * @param {number} angleBeta
@@ -246,8 +262,9 @@ export function WWS7(seiteC, angleBeta, angleGamma) {
   const angleAlpha = getRemainingAngle(angleGamma, angleBeta);
   const seiteB = getSeiteBWithSineLaw(seiteC, angleGamma, angleBeta);
   const seiteA = getSeiteAWithSineLaw(seiteC, angleGamma, angleAlpha);
-  return {angleAlpha, seiteB, seiteA}
+  return { angleAlpha, seiteB, seiteA };
 }
+
 
 /**
  * @param {number} angleBeta
@@ -259,8 +276,10 @@ export function WSW5(seiteA, angleBeta, angleGamma) {
   const angleAlpha = getRemainingAngle(angleGamma, angleBeta);
   const seiteB = getSeiteBWithSineLaw(seiteA, angleAlpha, angleBeta);
   const seiteC = getSeiteCWithSineLaw(seiteA, angleAlpha, angleGamma);
-  return {angleAlpha, seiteB, seiteC}
+  return { angleAlpha, seiteB, seiteC };
 }
+
+
 
 /**
  * @param {number} seiteB
@@ -272,5 +291,5 @@ export function WSW6(seiteB, angleAlpha, angleGamma) {
   const angleBeta = getRemainingAngle(angleAlpha, angleGamma);
   const seiteA = getSeiteAWithSineLaw(seiteB, angleBeta, angleAlpha);
   const seiteC = getSeiteCWithSineLaw(seiteB, angleBeta, angleGamma);
-  return {angleBeta, seiteA, seiteC}
+  return { angleBeta, seiteA, seiteC };
 }

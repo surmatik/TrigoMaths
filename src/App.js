@@ -7,6 +7,7 @@ import {
   findoutSideLengthAnglesState,
   default as sideLengthAnglesState,
 } from "./globalhelper/MethodMatcher.js";
+import {degreesToRadians}from "./globalhelper/globalhelper.mjs"
 
 function App() {
   const [seiteA, setSeiteA] = useState(0);
@@ -95,9 +96,9 @@ function App() {
     if (resultObjects.seiteA) {
       setSeiteA(resultObjects.seiteA);
     }
-    setHeightA(seiteC * Math.sin(beta))
-    setHeightB(seiteA * Math.sin(gamma))
-    setHeightC(seiteB * Math.sin(alpha))
+    setHeightA(seiteC * Math.sin(degreesToRadians(beta)))
+    setHeightB(seiteA * Math.sin(degreesToRadians(gamma)))
+    setHeightC(seiteB * Math.sin(degreesToRadians(alpha)))
     setTriangleArea((alpha * heighta) / 2)
     return resultObjects;
   }
@@ -357,11 +358,11 @@ function App() {
                   <h3>Calculation State</h3>
                   <p>{stateFromApp}</p>
                   <h3>Triangle Area</h3>
-                  <p>{-triangleArea}</p>
+                  <p>{triangleArea}</p>
                   <h3>SideHeights</h3>
-                  <p>ah: {-heighta}</p>
-                  <p>bh: {-heightb}</p>
-                  <p>ch: {-heightc}</p>
+                  <p>ah: {heighta}</p>
+                  <p>bh: {heightb}</p>
+                  <p>ch: {heightc}</p>
                 </div>
               </td>
             </tr>
