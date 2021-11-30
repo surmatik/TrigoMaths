@@ -76,8 +76,6 @@ function App() {
   function findMethodForValues() {
     const resultObjects = callAppropriateMethods();
 
-  
-
     if (resultObjects.angleAlpha) {
       setAlpha(resultObjects.angleAlpha);
     }
@@ -104,7 +102,6 @@ function App() {
   }
 
   function callAppropriateMethods() {
-    console.log(stateFromApp);
     let resultObjects = {};
     if (stateFromApp === sideLengthAnglesState.SSS) {
       resultObjects = sideLengthAnglesType.SSS(seiteA, seiteB, seiteC);
@@ -231,6 +228,28 @@ function App() {
     }
   };
 
+
+  function resetVars() {
+    setSeiteA(0)
+    setSeiteB(0)
+    setSeiteC(0)
+    setAlpha(0)
+    setBeta(0)
+    setGamma(0)
+    setTriangleSpecies("")
+    setHeightA(0)
+    setHeightC(0)
+    setHeightB(0)
+    setCosineAlpha(0)
+    setCosineBeta(0)
+    setTangensBeta(0)
+    setTangensAlpha(0)
+    setSinusBeta(0)
+    setSinusAlpha(0)
+    setTriangleArea(0)
+    setStateFromApp(sideLengthAnglesState.INITIALSTATE)
+  }
+
   return (
     <Container
       style={{ alignItems: "center", textAlign: "center" }}
@@ -244,7 +263,7 @@ function App() {
           <tr>
             <td>
               {/*Gegenkathete*/}
-              <h5>Gegenkathete</h5>
+              <h5>Seite a</h5>
               <InputGroup className="form-group w-50">
                 <FormControl
                   aria-label="Default"
@@ -255,7 +274,7 @@ function App() {
             </td>
             <td>
               {/*Ankathete*/}
-              <h5>Ankathete</h5>
+              <h5>Seite b</h5>
               <InputGroup className="form-group w-50">
                 <FormControl
                   aria-label="Default"
@@ -266,7 +285,7 @@ function App() {
             </td>
             <td>
               {/*Hypotenuse*/}
-              <h5>Hypotenuse</h5>
+              <h5>Seite c</h5>
               <InputGroup className="form-group w-50">
                 <FormControl
                   aria-label="Default"
@@ -313,6 +332,7 @@ function App() {
         <br />
         {/*Berechnen*/}
         <Button onClick={() => calculateTriangle()}>Calculate</Button>
+        <Button onClick={() => resetVars()}>Reset All</Button>
         <br />
         <table>
           <tbody>
