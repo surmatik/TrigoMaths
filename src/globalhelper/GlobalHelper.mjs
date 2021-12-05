@@ -22,8 +22,8 @@ export function getSeiteCWithSineLaw(seiteB, angleBeta, angleGamma) {
  * @param {number} seiteB
  * @param {number} seiteA
  */
-export function getAngleBetaWithArcsine(angleAlpha, seiteB , seiteA) {
-    return radsToDegrees(Math.asin((Math.sin(degreesToRadians(angleAlpha))  / (seiteA) * seiteB)))
+export function getAngleBetaWithArcsine(angleAlpha, seiteB, seiteA) {
+    return radsToDegrees(Math.asin((Math.sin(degreesToRadians(angleAlpha)) / (seiteA) * seiteB)))
 }
 
 /**
@@ -54,6 +54,6 @@ export function radsToDegrees(radiant) {
 /**
  * @param {number} degree
  */
-export function degreesToRadians(degree){
+export function degreesToRadians(degree) {
     return (Math.PI / 180) * degree
 }

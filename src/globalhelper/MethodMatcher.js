@@ -19,8 +19,7 @@ const sideLengthAnglesState = {
     WSW6: "WSW6",
     INITIALSTATE: "INITIALIZED",
     INVALIDSTATE: "INVALID"
-} 
-
+}
 
 
 /**
@@ -31,68 +30,66 @@ const sideLengthAnglesState = {
  * @param {number} beta
  * @param {number} gamma
  */
-export function findoutSideLengthAnglesState(seiteA, seiteB, seiteC, alpha, beta, gamma) {
-    if(seiteA !== 0 && seiteB !== 0 && seiteC !== 0 && beta === 0 && gamma === 0 && alpha === 0) {
+export function findSideLengthAnglesState(seiteA, seiteB, seiteC, alpha, beta, gamma) {
+    if (seiteA !== 0 && seiteB !== 0 && seiteC !== 0 && beta === 0 && gamma === 0 && alpha === 0) {
         return sideLengthAnglesState.SSS
     }
-    if(seiteA !== 0 && seiteB !== 0 && alpha !== 0 && seiteC === 0 && beta === 0 && gamma === 0) {
+    if (seiteA !== 0 && seiteB !== 0 && alpha !== 0 && seiteC === 0 && beta === 0 && gamma === 0) {
         return sideLengthAnglesState.SSW
     }
-    if(seiteA !== 0 && seiteB !== 0 && beta !== 0 && alpha === 0 && seiteC === 0 && gamma === 0) {
+    if (seiteA !== 0 && seiteB !== 0 && beta !== 0 && alpha === 0 && seiteC === 0 && gamma === 0) {
         return sideLengthAnglesState.SSW2
     }
-    if(seiteA !== 0 && seiteC !== 0 && alpha !== 0 && gamma === 0 && beta === 0 && seiteB === 0) {
+    if (seiteA !== 0 && seiteC !== 0 && alpha !== 0 && gamma === 0 && beta === 0 && seiteB === 0) {
         return sideLengthAnglesState.SSW3
     }
-    if(seiteB !== 0 && seiteC !== 0 && beta !== 0 && gamma === 0 && alpha === 0 && seiteA === 0) {
+    if (seiteB !== 0 && seiteC !== 0 && beta !== 0 && gamma === 0 && alpha === 0 && seiteA === 0) {
         return sideLengthAnglesState.SSW4
     }
-    if(seiteB !== 0 && seiteC !== 0 && gamma !== 0 && beta === 0 && alpha === 0 && seiteA === 0) {
+    if (seiteB !== 0 && seiteC !== 0 && gamma !== 0 && beta === 0 && alpha === 0 && seiteA === 0) {
         return sideLengthAnglesState.SSW5
     }
-    if(seiteA !== 0 && seiteB !== 0 && gamma !== 0 && beta === 0 && alpha === 0 && seiteC === 0) {
+    if (seiteA !== 0 && seiteB !== 0 && gamma !== 0 && beta === 0 && alpha === 0 && seiteC === 0) {
         return sideLengthAnglesState.SWS
     }
-    if(seiteA !== 0 &&  seiteC !== 0 && beta !== 0 && seiteB === 0 && alpha === 0 && gamma === 0) {
+    if (seiteA !== 0 && seiteC !== 0 && beta !== 0 && seiteB === 0 && alpha === 0 && gamma === 0) {
         return sideLengthAnglesState.SWS2
     }
-    if(seiteB !== 0 && seiteC !== 0 && alpha !== 0 && seiteA === 0 && beta === 0 && gamma === 0) {
+    if (seiteB !== 0 && seiteC !== 0 && alpha !== 0 && seiteA === 0 && beta === 0 && gamma === 0) {
         return sideLengthAnglesState.SWS3
     }
-    if(seiteA !==0 && alpha !== 0 && gamma !== 0 && beta === 0 && seiteB === 0 && seiteC === 0) {
+    if (seiteA !== 0 && alpha !== 0 && gamma !== 0 && beta === 0 && seiteB === 0 && seiteC === 0) {
         return sideLengthAnglesState.WWS
     }
-    if(seiteA !== 0 && alpha !== 0 && beta !== 0 && seiteB === 0 && gamma === 0 && seiteC === 0) {
+    if (seiteA !== 0 && alpha !== 0 && beta !== 0 && seiteB === 0 && gamma === 0 && seiteC === 0) {
         return sideLengthAnglesState.WWS2
     }
-    if(seiteB !== 0 && alpha !== 0 && beta !== 0 && seiteC === 0 && seiteA === 0 && gamma === 0) {
+    if (seiteB !== 0 && alpha !== 0 && beta !== 0 && seiteC === 0 && seiteA === 0 && gamma === 0) {
         return sideLengthAnglesState.WWS3
     }
-    if(seiteB !== 0 && beta !== 0 && gamma !== 0 && alpha === 0 && seiteC === 0 && seiteA === 0) {
+    if (seiteB !== 0 && beta !== 0 && gamma !== 0 && alpha === 0 && seiteC === 0 && seiteA === 0) {
         return sideLengthAnglesState.WWS4
     }
-    if(seiteC !== 0 && alpha !== 0 && beta !== 0 && gamma === 0 && seiteA === 0 && seiteB === 0) {
+    if (seiteC !== 0 && alpha !== 0 && beta !== 0 && gamma === 0 && seiteA === 0 && seiteB === 0) {
         return sideLengthAnglesState.WWS5
     }
-    if(seiteC !== 0 && alpha !== 0 && gamma !== 0 && beta === 0 && seiteB === 0 && seiteA === 0 ) {
+    if (seiteC !== 0 && alpha !== 0 && gamma !== 0 && beta === 0 && seiteB === 0 && seiteA === 0) {
         return sideLengthAnglesState.WWS6
     }
-    if(seiteC !== 0 && beta !== 0 && gamma !== 0 && alpha === 0 && seiteB === 0 && seiteA === 0 ) {
+    if (seiteC !== 0 && beta !== 0 && gamma !== 0 && alpha === 0 && seiteB === 0 && seiteA === 0) {
         return sideLengthAnglesState.WWS7
     }
-    if(alpha !== 0 && seiteB !== 0 && seiteC !== 0 && alpha === 0 && seiteB === 0 && seiteC === 0) {
+    if (alpha !== 0 && seiteB !== 0 && seiteC !== 0 && alpha === 0 && seiteB === 0 && seiteC === 0) {
         return sideLengthAnglesState.WSW5
     }
-    if(seiteB !== 0 && alpha !== 0 && gamma !== 0 && beta === 0 && seiteA === 0 && seiteC === 0) {
+    if (seiteB !== 0 && alpha !== 0 && gamma !== 0 && beta === 0 && seiteA === 0 && seiteC === 0) {
         return sideLengthAnglesState.WSW6
-    }
-    else if(seiteC > (seiteA + seiteB)) {
+    } else if (seiteC > (seiteA + seiteB)) {
+        return sideLengthAnglesState.INVALIDSTATE
+    } else {
         return sideLengthAnglesState.INVALIDSTATE
     }
-    else {
-        return sideLengthAnglesState.INVALIDSTATE
-    }
-} 
+}
 
 export default sideLengthAnglesState
 
