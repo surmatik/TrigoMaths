@@ -79,7 +79,7 @@ export function findSideLengthAnglesState(seiteA, seiteB, seiteC, alpha, beta, g
     if (seiteC !== 0 && beta !== 0 && gamma !== 0 && alpha === 0 && seiteB === 0 && seiteA === 0) {
         return sideLengthAnglesState.WWS7
     }
-    if (alpha !== 0 && seiteB !== 0 && seiteC !== 0 && alpha === 0 && seiteB === 0 && seiteC === 0) {
+    if (seiteA !== 0 && beta !== 0 && gamma !== 0 && alpha === 0 && seiteB === 0 && seiteC === 0) {
         return sideLengthAnglesState.WSW5
     }
     if (seiteB !== 0 && alpha !== 0 && gamma !== 0 && beta === 0 && seiteA === 0 && seiteC === 0) {
