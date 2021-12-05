@@ -40,12 +40,6 @@ function App() {
     function calculateTriangle() {
         const resultObjects = findMethodForValues();
         if (resultObjects) {
-            const maxNumber = Math.max(seiteA, seiteC, seiteB)
-            if (seiteA + seiteB + seiteC - maxNumber > maxNumber) {
-                setErrorMessage("")
-            } else {
-                setErrorMessage("Triangle can not be calculated")
-            }
             const cosineTangensAndSine = calculateSinusTangensCosinus(
                 seiteA,
                 seiteB,
@@ -295,8 +289,6 @@ function App() {
                 <Row>
                     {/*Berechnen*/}
                 </Row>
-
-                {errorMessage}
 
                 <table width={'100%'}>
                     <thead>
