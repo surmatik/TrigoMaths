@@ -227,11 +227,10 @@ function App() {
 
     return (
         <Container
-            style={{alignItems: "center", textAlign: "center"}}
             className="App"
         >
             <div>
-                <h1>TRIGO</h1>
+                <h1><span>Trigo</span> Rechner</h1>
                 <br/>
                 <br/>
                 <Row>
@@ -260,7 +259,7 @@ function App() {
                             onChange={(e) => setSeiteC(e.target.value)}
                         />
                     </InputGroup>
-                    <Button onClick={() => calculateTriangle()}>Calculate</Button>
+                    
                 </Row>
                 {/*Alpha*/}
                 <Row>
@@ -284,7 +283,8 @@ function App() {
                             onChange={(e) => setGamma(e.target.value)}
                         />
                     </InputGroup>
-                    <Button onClick={() => window.location.reload()}>Reset All</Button>
+                    <Button onClick={() => calculateTriangle()}>ausrechnen</Button>
+                    <Button onClick={() => window.location.reload()}>zurücksetzen</Button>
                 </Row>
                 <Row>
                     {/*Berechnen*/}
@@ -315,27 +315,38 @@ function App() {
                             {/*Tangens*/}
                             <p>Tangens Alpha: {tangensAlpha} </p>
                             <p>Tangens Beta: {tangensBeta}</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
                         </td>
                         <td>
                             <p>a: {seiteA} </p>
                             <p>b: {seiteB} </p>
                             <p>c : {seiteC}</p>
+                            <p>&nbsp;</p>
                         </td>
                         <td>
                             <p>Alpha: {alpha}</p>
                             <p>Beta: {beta}</p>
                             <p>Gamma: {gamma}</p>
+                            <p>&nbsp;</p>
                         </td>
                         <td>
                             <p>{triangleSpecies}</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
                         </td>
                         <td>
                             <p>ah: {heighta}</p>
                             <p>bh: {heightb}</p>
                             <p>ch: {heightc}</p>
+                            <p>&nbsp;</p>
                         </td>
                         <td>
                             <p>{triangleArea}</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
                         </td>
                     </tr>
                     </tbody>
